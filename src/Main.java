@@ -30,7 +30,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         int numberOfChoice;
         while(true){
-            showMainMenu();
+            Menu.showMainMenu();
 
             try {
                 numberOfChoice = Integer.parseInt(input.next());
@@ -42,7 +42,7 @@ public class Main {
             switch (numberOfChoice) {
                 case 1:
                     try {
-                        group.addStudentToGroup(createStudent());
+                        group.addStudentToGroup(Group.createStudent());
                     } catch (ArrayIsFullException e) {
                         e.printStackTrace();
                     }
@@ -64,7 +64,7 @@ public class Main {
                     group.sortStudent(1);
                     break;
                 case 4:
-                    showSortMenu();
+                    Menu.showSortMenu();
                     int parameter;
                     try {
                         parameter = Integer.parseInt(input.next());
@@ -99,52 +99,4 @@ public class Main {
 
     }
 
-    public static void showMainMenu() {
-        System.out.println("\tMake your choice:");
-        System.out.println("Add Student to the group - 1;");
-        System.out.println("Delete student from the group - 2;");
-        System.out.println("Sort Students in the group by Surname - 3:");
-        System.out.println("Sort Students in the group by parameters - 4;");
-        System.out.println("View all students in the group - 5;");
-        System.out.println("All the male students who were 18 years old - 6;");
-        System.out.println("Close program - 7.");
-    }
-
-    public static void showSortMenu() {
-        System.out.println("\tWhat parameter do you want to sort?");
-        System.out.println("LastName ascending - 1;");
-        System.out.println("LastName descending - 2;");
-        System.out.println("Age ascending - 3;");
-        System.out.println("Age descending - 4;");
-        System.out.println("AverageScore ascending - 5;");
-        System.out.println("AverageScore descending - 6;");
-        System.out.println("Get main menu.");
-    }
-
-    public static Student createStudent(){
-        Scanner in = new Scanner(System.in);
-        Student student = new Student();
-
-        try {
-            System.out.print("Input first name: ");
-            student.setFirstName(in.nextLine());
-            System.out.print("Input last name: ");
-            student.setLastName(in.nextLine());
-            System.out.print("Input sex: ");
-            student.setSex(in.nextBoolean());
-            System.out.print("Input age: ");
-            student.setAge(in.nextInt());
-            System.out.print("Is get stipend: ");
-            student.setStipend(in.nextBoolean());
-            System.out.print("Input average score: ");
-            student.setAverageScore(in.nextDouble());
-            System.out.print("Input number of the record book: ");
-            student.setNumberOfTheRecordBook(in.nextInt());
-        }catch (InputMismatchException e) {
-            System.out.println("Error adding student.");
-            return null;
-        }
-
-        return student;
-    }
 }

@@ -1,5 +1,7 @@
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Group implements Voenkom{
     private int numberOfGroup;
@@ -51,6 +53,33 @@ public class Group implements Voenkom{
         else
             System.out.println("This student is already in the group.");
 
+    }
+
+    public static Student createStudent(){
+        Scanner in = new Scanner(System.in);
+        Student student = new Student();
+
+        try {
+            System.out.print("Input first name: ");
+            student.setFirstName(in.nextLine());
+            System.out.print("Input last name: ");
+            student.setLastName(in.nextLine());
+            System.out.print("Input sex: ");
+            student.setSex(in.nextBoolean());
+            System.out.print("Input age: ");
+            student.setAge(in.nextInt());
+            System.out.print("Is get stipend: ");
+            student.setStipend(in.nextBoolean());
+            System.out.print("Input average score: ");
+            student.setAverageScore(in.nextDouble());
+            System.out.print("Input number of the record book: ");
+            student.setNumberOfTheRecordBook(in.nextInt());
+        }catch (InputMismatchException e) {
+            System.out.println("Error adding student.");
+            return null;
+        }
+
+        return student;
     }
 
     public void deleteStudentFromGroup(Student student) {
